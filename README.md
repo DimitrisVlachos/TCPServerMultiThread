@@ -10,8 +10,9 @@
 
 
 # TODO
-	Use std::future instead atomic for thread term signaling
-
+	-Use std::future instead atomic for thread term signaling
+	-Extra error handling
+	
 # Possible optimizations:
 	  -Use libevent to avoid select
 	  -Pre-allocate a thread pool for incoming connections
