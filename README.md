@@ -19,3 +19,8 @@
 	  -Set a maximum range for new threads & partition/assign active connections
 	  -Reduce allocations by using either a faster allocator or implement custom pool
   
+# Build
+	make -f Makefile.release
+
+# Run
+	./mt_tcp_server
