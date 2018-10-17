@@ -1,0 +1,39 @@
+
+APP     = mt_tcp_server
+CC      = g++ -std=c++11
+RM      = rm
+SRCDIR  = src 
+SRCEXT  = cpp
+OBJDIR  = build/obj_mt_tcp_server
+ 
+SRCS    := $(shell find $(SRCDIR) -name '*.$(SRCEXT)')
+SRCDIRS := $(shell find . -name '*.$(SRCEXT)' -exec dirname {} \; | uniq)
+OBJS    := $(patsubst %.$(SRCEXT),$(OBJDIR)/%.o,$(SRCS))
+ 
+DEBUG   = 
+INCLUDE = 
+CFLAGS  = -O3 -lm -c $(DEBUG) $(INCLUDE)
+OFLAGS  = -lm -lpthread
+ 
+all:    $(APP)
+ 
+$(APP):	buildrepo $(OBJS)
+	@echo	"$(CC)	$(OFLAGS)	$(OBJS) -o $@"
+	@$(CC) $(OBJS) $(OFLAGS) -o $@
+ 
+$(OBJDIR)/%.o: %.$(SRCEXT)
+	@echo "$(CC) $(CFLAGS) $< -o $@"
+	@$(CC) $(CFLAGS) $< -o $@
+ 
+clean:
+	$(RM) -r $(OBJDIR)
+ 
+buildrepo:
+	$(call make-repo)
+ 
+define make-repo
+        for dir in $(SRCDIRS); \
+        do \
+                mkdir -p $(OBJDIR)/$$dir; \
+        done
+endef
