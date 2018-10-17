@@ -2,7 +2,7 @@
 APP     = mt_tcp_server
 CC      = g++ -std=c++11
 RM      = rm
-SRCDIR  = src 
+SRCDIR  = . 
 SRCEXT  = cpp
 OBJDIR  = build/obj_mt_tcp_server
  
